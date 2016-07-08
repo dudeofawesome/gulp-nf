@@ -1,0 +1,46 @@
+{
+  "name": "gulp-nf",
+  "version": "0.0.1",
+  "description": "Gulp NF Description",
+  "main": "build/index.js",
+  "scripts": {
+    "test": "gulp build; gulp build:tests; gulp test",
+    "postinstall": "typings install",
+    "prepublish": "gulp build",
+    "build": "gulp build"
+  },
+  "typings": "./build/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dudeofawesome/gulp-nf.git"
+  },
+  "keywords": [
+    "gulp",
+    "foreman",
+    "node-foreman",
+    "nf",
+    "run"
+  ],
+  "author": "Louis Orleans <louis@orleans.io> (http://orleans.io)",
+  "license": "GPL-2.0",
+  "bugs": {
+    "url": "https://github.com/dudeofawesome/gulp-nf/issues"
+  },
+  "homepage": "https://github.com/dudeofawesome/gulp-nf#readme",
+  "devDependencies": {
+    "bluebird": "^3.4.1",
+    "chai": "^3.5.0",
+    "chalk": "^1.1.3",
+    "del": "^2.2.1",
+    "gulp": "^3.9.1",
+    "gulp-mocha": "^2.2.0",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-typescript": "^2.13.6",
+    "merge2": "^1.0.2",
+    "mocha": "^2.5.3",
+    "run-sequence": "^1.2.1",
+    "tslint": "^3.13.0",
+    "typescript": "^2.0.0-dev.20160707",
+    "typings": "^1.3.1"
+  }
+}
