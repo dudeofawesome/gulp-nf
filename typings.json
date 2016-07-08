@@ -1,9 +1,12 @@
 {
   "dependencies": {
     "bluebird": "registry:npm/bluebird#3.3.4+20160622205516",
-    "chai": "registry:npm/chai#3.5.0+20160415060238"
+    "chai": "registry:npm/chai#3.5.0+20160415060238",
+    "through2": "registry:npm/through2#2.0.0+20160308004148"
   },
   "globalDependencies": {
+    "gulp": "registry:dt/gulp#3.8.0+20160316155526",
+    "gulp-util": "registry:dt/gulp-util#0.0.0+20160316155526",
     "mocha": "registry:dt/mocha#2.2.5+20160619032855"
   }
 }
