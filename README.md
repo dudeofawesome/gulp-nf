@@ -1,5 +1,5 @@
 # Gulp NF
-Gulp NF Description
+A Gulp plugin to run Node Foreman
 
 ## Example
 

@@ -1,7 +1,7 @@
 {
   "name": "gulp-nf",
   "version": "0.0.1",
-  "description": "Gulp NF Description",
+  "description": "A Gulp plugin to run Node Foreman",
   "main": "build/index.js",
   "scripts": {
     "test": "gulp build; gulp build:tests; gulp test",
