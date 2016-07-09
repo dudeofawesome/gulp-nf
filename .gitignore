@@ -35,6 +35,7 @@ bower_components
 
 # Environment configuration
 .env
+!/src/tests/.env
 
 # CSS / SCSS files
 modules/resources/**.css

@@ -1,12 +1,12 @@
 import {expect} from 'chai';
 import * as Promise from 'bluebird';
 
-import {} from '../';
+import {Foreman, ForemanProcess, IForemanConfig} from '../';
 
 (() => {
     describe('Gulp NF', () => {
-        it('should do stuff', () => {
-
+        it('should launch a process', () => {
+            const child = Foreman();
         });
     });
 })();
