@@ -1,5 +1,5 @@
 'use strict';
 
-process.on('message', (mes) => {
-    process.send({mes});
+process.on('message', (msg) => {
+    process.send('index: ' + msg);
 });

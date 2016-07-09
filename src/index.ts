@@ -65,6 +65,12 @@ export function Foreman (config?: IForemanConfig, saveOld: boolean = false): Nod
             if (!config.envFile) {
                 config.envFile = `${__dirname}/.env`;
             }
+        } else {
+            config = {
+                cwd: __dirname,
+                procFile: `${__dirname}/Procfile`,
+                envFile: `${__dirname}/.env`
+            };
         }
 
         if (!saveOld && proc) {
@@ -75,10 +81,26 @@ export function Foreman (config?: IForemanConfig, saveOld: boolean = false): Nod
         const options: SpawnOptions = {
             cwd: config.cwd
         };
-        proc = spawn('nf', ['start'], options);
+        const commands: Array<string> = [];
+
+        commands.push('start');
+        if (config.procFile) {
+            commands.push('-j');
+            commands.push(config.procFile);
+        }
+        if (config.envFile) {
+            commands.push('-e');
+            commands.push(config.envFile);
+        }
+        if (config.port) {
+            commands.push('-p');
+            commands.push(config.port.toString());
+        }
+
+        proc = spawn('nf', commands, options);
 
         proc.stderr.on('data', (data) => {
-            process.stdout.write(`[${Chalk.gray(getDate())}] [${Chalk.green('Proc')}] ${Chalk.red(data)}`);
+            process.stderr.write(`[${Chalk.gray(getDate())}] [${Chalk.green('Proc')}] ${Chalk.red(data)}`);
         });
         proc.stdout.on('data', (data) => {
             process.stdout.write(`[${Chalk.gray(getDate())}] [${Chalk.green('Proc')}] ${data}`);
