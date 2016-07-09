@@ -7,6 +7,7 @@
   "globalDependencies": {
     "gulp": "registry:dt/gulp#3.8.0+20160316155526",
     "gulp-util": "registry:dt/gulp-util#0.0.0+20160316155526",
-    "mocha": "registry:dt/mocha#2.2.5+20160619032855"
+    "mocha": "registry:dt/mocha#2.2.5+20160619032855",
+    "node": "registry:dt/node#6.0.0+20160621231320"
   }
 }
