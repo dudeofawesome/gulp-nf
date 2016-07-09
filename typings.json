@@ -2,12 +2,21 @@
   "dependencies": {
     "bluebird": "registry:npm/bluebird#3.3.4+20160622205516",
     "chai": "registry:npm/chai#3.5.0+20160415060238",
+    "chalk": "registry:npm/chalk#1.0.0+20160211003958",
+    "orchestrator": "registry:npm/orchestrator#0.3.7+20160211003958",
     "through2": "registry:npm/through2#2.0.0+20160308004148"
   },
   "globalDependencies": {
+    "chokidar": "registry:dt/chokidar#1.4.3+20160316155526",
+    "glob": "registry:dt/glob#5.0.10+20160317120654",
+    "glob-stream": "registry:dt/glob-stream#3.1.12+20160316155526",
     "gulp": "registry:dt/gulp#3.8.0+20160316155526",
     "gulp-util": "registry:dt/gulp-util#0.0.0+20160316155526",
+    "minimatch": "registry:dt/minimatch#2.0.8+20160317120654",
     "mocha": "registry:dt/mocha#2.2.5+20160619032855",
-    "node": "registry:dt/node#6.0.0+20160621231320"
+    "node": "registry:dt/node#6.0.0+20160621231320",
+    "undertaker": "registry:dt/undertaker#0.12.0+20160316155526",
+    "vinyl": "registry:dt/vinyl#1.1.0+20160316155526",
+    "vinyl-fs": "registry:dt/vinyl-fs#0.0.0+20160317120654"
   }
 }

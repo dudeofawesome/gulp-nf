@@ -5,59 +5,8 @@ import {log, PluginError, File} from 'gulp-util';
 import * as Through from 'through2';
 import * as Chalk from 'chalk';
 
-export interface IForemanConfig {
-    cwd?: string;
-    procFile?: string;
-    envFile?: string;
-    port?: number;
-    procs?: string | Array<string>;
-};
-
-export interface ForemanProcess extends ChildProcess {
-//     public pid: number;
-//     public stdin:  stream.Writable;
-//     public stdout: stream.Readable;
-//     public stderr: stream.Readable;
-//     public stdio: [stream.Writable, stream.Readable, stream.Readable];
-//
-//     constructor (
-//         private process
-//     ) {}
-//
-//     public disconect () {
-//
-//     }
-//
-//     public kill (signal?: string) {
-//
-//     }
-//
-//     public send (message: any, sendHandle?: any, options?: any): Promise<void | Error> {
-//         return new Promise<void | Error>((resolve, reject) => {
-//             resolve();
-//         });
-//     }
-}
-
-export function Foreman (config: IForemanConfig): Promise<ForemanProcess> {
-    return new Promise<ForemanProcess>((resolve, reject) => {
-        proc = spawn('nf', ['start']);
-        proc.stderr.on('data', (data) => {
-            process.stdout.write(`[${Chalk.gray(getDate())}] [${Chalk.green('Proc')}] ${Chalk.red(data)}`);
-        });
-        proc.stdout.on('data', (data) => {
-            process.stdout.write(`[${Chalk.gray(getDate())}] [${Chalk.green('Proc')}] ${data}`);
-        });
-
-        return proc;
-    });
-};
-
-
-
-
-
 let proc: ForemanProcess;
+
 function getDate (date?) {
     date = date || new Date();
     let hours = date.getHours();
@@ -69,7 +18,80 @@ function getDate (date?) {
     return hours + ':' + minutes + ':' + seconds;
 };
 
-if (proc) {
-    proc.kill('SIGHUP');
-    proc = undefined;
+export interface IForemanConfig {
+    cwd?: string;
+    procFile?: string;
+    envFile?: string;
+    port?: number;
+    procs?: string | Array<string>;
+};
+
+export interface ForemanProcess extends ChildProcess {
+    // public pid: number;
+    // public stdin:  stream.Writable;
+    // public stdout: stream.Readable;
+    // public stderr: stream.Readable;
+    // public stdio: [stream.Writable, stream.Readable, stream.Readable];
+    //
+    // constructor (
+    //     private process
+    // ) {}
+    //
+    // public disconect () {
+    //
+    // }
+    //
+    // public kill (signal?: string) {
+    //
+    // }
+    //
+    // public send (message: any, sendHandle?: any, options?: any): Promise<void | Error> {
+    //     return new Promise<void | Error>((resolve, reject) => {
+    //         resolve();
+    //     });
+    // }
 }
+
+export function Foreman (config?: IForemanConfig, saveOld: boolean = false): NodeJS.ReadWriteStream | ForemanProcess {
+    if (!config || (config && typeof config === 'object')) {
+        // set config defaults
+        if (config) {
+            if (!config.cwd) {
+                config.cwd = __dirname;
+            }
+            if (!config.procFile) {
+                config.procFile = `${__dirname}/Procfile`;
+            }
+            if (!config.envFile) {
+                config.envFile = `${__dirname}/.env`;
+            }
+        }
+
+        if (!saveOld && proc) {
+            proc.kill('SIGHUP');
+            proc = undefined;
+        }
+
+        const options: SpawnOptions = {
+            cwd: config.cwd
+        };
+        proc = spawn('nf', ['start'], options);
+
+        proc.stderr.on('data', (data) => {
+            process.stdout.write(`[${Chalk.gray(getDate())}] [${Chalk.green('Proc')}] ${Chalk.red(data)}`);
+        });
+        proc.stdout.on('data', (data) => {
+            process.stdout.write(`[${Chalk.gray(getDate())}] [${Chalk.green('Proc')}] ${data}`);
+        });
+
+        return proc;
+    } else {
+        return Through.obj((file, encoding, callback) => {
+            const foremanConf: IForemanConfig = {
+                cwd: __dirname
+            };
+
+            callback(null, Foreman(foremanConf));
+        });
+    }
+};
