@@ -1,6 +1,6 @@
 {
   "name": "gulp-nf",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A Gulp plugin to run Node Foreman",
   "main": "build/index.js",
   "scripts": {
