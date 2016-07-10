@@ -53,6 +53,11 @@ export interface ForemanProcess extends ChildProcess {
 }
 
 export function Foreman (config?: IForemanConfig, saveOld: boolean = false): NodeJS.ReadWriteStream | ForemanProcess {
+    if (!proc) {
+        process.on('exit', cleanup);
+        process.on('SIGINT', cleanup);
+    }
+
     if (!config || (config && typeof config === 'object')) {
         // set config defaults
         if (config) {
@@ -117,3 +122,9 @@ export function Foreman (config?: IForemanConfig, saveOld: boolean = false): Nod
         });
     }
 };
+
+function cleanup () {
+    if (proc) {
+        proc.kill('SIGHUP');
+    }
+}
