@@ -11,12 +11,12 @@ let sourcemaps;
 gulp.task('build:typescript', () => {
     if (!typescript) {
         typescript = require('gulp-typescript');
-        tsProject = typescript.createProject('tsconfig-main.json', {sortOutput: true});
+        tsProject = typescript.createProject('tsconfig-main.json');
         sourcemaps = require('gulp-sourcemaps');
     }
     let tsResult = tsProject.src()
         .pipe(sourcemaps.init())
-        .pipe(typescript(tsProject));
+        .pipe(tsProject());
 
     return merge([
             tsResult.js

@@ -105,7 +105,7 @@ export function Foreman (config?: IForemanConfig, saveOld: boolean = false): Nod
         proc = spawn('nf', commands, options);
 
         proc.stderr.on('data', (data) => {
-            process.stderr.write(`[${Chalk.gray(getDate())}] [${Chalk.green('Proc')}] ${Chalk.red(data)}`);
+            process.stderr.write(`[${Chalk.gray(getDate())}] [${Chalk.green('Proc')}] ${Chalk.red(data.toString())}`);
         });
         proc.stdout.on('data', (data) => {
             process.stdout.write(`[${Chalk.gray(getDate())}] [${Chalk.green('Proc')}] ${data}`);

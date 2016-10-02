@@ -10,14 +10,11 @@
     },
     "filesGlob": [
         "src/**/*.ts",
-        "!node_modules/**/*",
-        "typings/main/**/*.d.ts"
+        "!node_modules/**/*"
     ],
     "exclude": [
         "src/**/tests/*.ts",
-        "node_modules",
-        "typings/browser",
-        "typings/browser.d.ts"
+        "node_modules"
     ],
     "compileOnSave": false,
     "atom": {
